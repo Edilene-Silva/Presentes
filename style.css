@@ -1,0 +1,417 @@
+```css
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azul: #6284a8;
+    --azul-escuro: #1f3f70;
+    --azul-claro: #dfeaf0;
+    --creme: #faf8f2;
+    --branco: #ffffff;
+    --texto: #303631;
+    --dourado: #b69b62;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--creme);
+    color: var(--texto);
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+
+/* =========================
+   CAPA
+========================= */
+
+.hero {
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(98, 132, 168, 1),
+            rgba(98, 132, 168, 1)
+        ),
+        url("imagens/capa.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+.hero-content {
+    padding: 40px 20px;
+}
+
+.decoracao {
+    font-size: 42px;
+    font-family: serif;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.pequeno {
+    letter-spacing: 4px;
+    font-size: 12px;
+    opacity: 0.85;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(48px, 7vw, 82px);
+    line-height: 1.05;
+    font-weight: 500;
+}
+
+.subtitulo {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.linha {
+    width: 70px;
+    height: 1px;
+    background: var(--dourado);
+    margin: 35px auto 0;
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.mensagem {
+    padding: 90px 0;
+    text-align: center;
+    background: var(--branco);
+}
+
+.mensagem p {
+    max-width: 680px;
+    margin: 0 auto 18px;
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   PIX
+========================= */
+
+.pix {
+    padding: 70px 20px;
+    background: var(--azul-claro);
+}
+
+.pix-box {
+    max-width: 650px;
+    margin: auto;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: var(--branco);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 45px rgba(36, 70, 56, 0.08);
+}
+
+.pix-icon {
+    font-size: 30px;
+    color: var(--azul);
+}
+
+.pix h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    margin: 18px 0;
+}
+
+.pix p {
+    line-height: 1.6;
+    max-width: 480px;
+    margin: auto;
+}
+
+.pix-chave {
+    display: inline-block;
+
+    margin: 25px 0 8px;
+
+    padding: 15px 25px;
+
+    border: 1px dashed var(--azul);
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+.pix-observacao {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+
+/* =========================
+   LISTA
+========================= */
+
+.lista {
+    padding: 100px 0;
+}
+
+.titulo-secao {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.titulo-secao span {
+    font-size: 30px;
+    color: var(--azul);
+}
+
+.titulo-secao h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 44px;
+    font-weight: 500;
+    margin: 12px 0;
+}
+
+.titulo-secao p {
+    opacity: 0.7;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.presentes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 28px;
+}
+
+.presente {
+    background: var(--branco);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.presente:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.10);
+}
+
+.imagem {
+    height: 260px;
+    background: #ffffff;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.conteudo {
+    padding: 25px;
+}
+
+.numero {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--dourado);
+}
+
+.conteudo h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+    font-weight: 500;
+
+    min-height: 58px;
+
+    margin: 10px 0 22px;
+}
+
+.botao {
+    display: inline-block;
+
+    padding: 12px 20px;
+
+    border: 1px solid var(--azul);
+
+    border-radius: 50px;
+
+    color: var(--azul);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.botao:hover {
+    background: var(--azul);
+    color: white;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    padding: 100px 20px;
+
+    text-align: center;
+
+    background: var(--azul);
+
+    color: white;
+}
+
+footer span {
+    font-size: 35px;
+}
+
+footer h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 38px;
+
+    font-weight: 500;
+
+    margin: 20px 0;
+}
+
+footer p {
+    max-width: 500px;
+    margin: auto;
+
+    line-height: 1.7;
+
+    opacity: 0.85;
+}
+
+footer .linha {
+    margin-top: 40px;
+}
+
+footer small {
+    display: block;
+    margin-top: 25px;
+    opacity: 0.7;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 800px) {
+
+    .hero {
+        min-height: 520px;
+    }
+
+    .presentes {
+        grid-template-columns: 1fr;
+    }
+
+    .imagem {
+        height: 280px;
+    }
+
+    .lista {
+        padding: 70px 0;
+    }
+
+    .titulo-secao h2 {
+        font-size: 36px;
+    }
+
+    .mensagem {
+        padding: 65px 20px;
+    }
+
+    .mensagem p {
+        font-size: 19px;
+    }
+
+    footer h2 {
+        font-size: 32px;
+    }
+
+}
+
+
+/* =========================
+   TELAS MUITO PEQUENAS
+========================= */
+
+@media (max-width: 400px) {
+
+    .hero-content {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+
+    .pix-box {
+        padding: 40px 20px;
+    }
+
+    .pix h2 {
+        font-size: 26px;
+    }
+
+}
+```
