@@ -9,6 +9,12 @@ const supabaseClient = configurado
     : null;
 
 const cards = [...document.querySelectorAll(".presente")];
+const modalPresente = document.querySelector("#modal-presente");
+const tituloModal = document.querySelector("#modal-presente-titulo");
+const campoNomePresenteador = document.querySelector("#nome-presenteador");
+const erroModal = document.querySelector("#modal-presente-erro");
+const confirmarModal = document.querySelector("#modal-presente-confirmar");
+let fecharModal;
 
 cards.forEach((card) => {
     const numero = card.querySelector(".numero").textContent.trim();
@@ -24,15 +30,57 @@ cards.forEach((card) => {
 });
 
 function marcarComoPresenteado(card) {
-    const botaoVer = card.querySelector(".botao:not(.botao-presentear)");
     const botaoPresentear = card.querySelector(".botao-presentear");
 
     card.classList.add("presenteado");
-    botaoVer.setAttribute("aria-disabled", "true");
-    botaoVer.tabIndex = -1;
     botaoPresentear.disabled = true;
     botaoPresentear.textContent = "Já presenteado";
 }
+
+function solicitarConfirmacao(nomePresente) {
+    return new Promise((resolve) => {
+        fecharModal = resolve;
+        tituloModal.textContent = `Deseja confirmar o presente: ${nomePresente}?`;
+        campoNomePresenteador.value = "";
+        erroModal.textContent = "";
+        modalPresente.hidden = false;
+        document.body.classList.add("modal-aberto");
+        campoNomePresenteador.focus();
+    });
+}
+
+function fecharConfirmacao(nomePessoa = null) {
+    if (!fecharModal) return;
+
+    const resolver = fecharModal;
+    fecharModal = null;
+    modalPresente.hidden = true;
+    document.body.classList.remove("modal-aberto");
+    resolver(nomePessoa);
+}
+
+confirmarModal.addEventListener("click", () => {
+    const nomePessoa = campoNomePresenteador.value.trim();
+
+    if (!nomePessoa) {
+        erroModal.textContent = "Por favor, informe seu nome para continuar.";
+        campoNomePresenteador.focus();
+        return;
+    }
+
+    fecharConfirmacao(nomePessoa);
+});
+
+modalPresente.querySelectorAll("[data-fechar-modal]").forEach((elemento) => {
+    elemento.addEventListener("click", () => fecharConfirmacao());
+});
+
+document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && !modalPresente.hidden) fecharConfirmacao();
+    if (evento.key === "Enter" && !modalPresente.hidden && document.activeElement === campoNomePresenteador) {
+        confirmarModal.click();
+    }
+});
 
 async function carregarPresentesReservados() {
     if (!supabaseClient) return;
@@ -59,15 +107,16 @@ async function confirmarPresente(card) {
     }
 
     const nome = card.querySelector("h3").textContent.trim();
-    const confirmou = window.confirm(`Deseja confirmar o presente: ${nome}? Esta ação não poderá ser desfeita pela lista.`);
-    if (!confirmou) return;
+    const nomePessoaLimpo = await solicitarConfirmacao(nome);
+    if (!nomePessoaLimpo) return;
 
     const botaoPresentear = card.querySelector(".botao-presentear");
     botaoPresentear.disabled = true;
     botaoPresentear.textContent = "Confirmando...";
 
     const { data: reservado, error } = await supabaseClient.rpc("reservar_presente", {
-        p_presente_id: card.dataset.presenteId
+        p_presente_id: card.dataset.presenteId,
+        p_nome_pessoa: nomePessoaLimpo
     });
 
     if (error) {

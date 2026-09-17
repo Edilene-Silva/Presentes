@@ -520,6 +520,36 @@
 
                 </article>
 
+
+                <!-- PRESENTE 15 -->
+                <article class="presente">
+
+                    <div class="imagem">
+                        <img
+                            src="imagens/jantar.PNG"
+                            alt="Jogo de Jantar"
+                        >
+                    </div>
+
+                    <div class="conteudo">
+
+                        <span class="numero">15</span>
+
+                        <h3>Jogo de Jantar</h3>
+
+                        <a
+                            href="https://www.mercadolivre.com.br/jogo-de-jantarcha-tramontina-canyon-20-pecas-96589068/p/MLB41005936?pdp_filters=item_id%3AMLB5192840206&amp;matt_tool=38524122&amp;ua=uDqUFjbjN3pdPtejQsP9wQx4g-wciYoDjxYALFUL8SkkURE#origin=whatsapp&amp;sid=whatsapp&amp;wid=MLB5192840206"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="botao"
+                        >
+                            Ver presente →
+                        </a>
+
+                    </div>
+
+                </article>
+
             </div>
 
         </div>
@@ -546,6 +576,30 @@
         </small>
 
     </footer>
+
+    <div class="modal-presente" id="modal-presente" hidden>
+        <div class="modal-presente__fundo" data-fechar-modal></div>
+
+        <section
+            class="modal-presente__caixa"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-presente-titulo"
+        >
+            <span class="modal-presente__icone">♡</span>
+            <h2 id="modal-presente-titulo">Deseja confirmar o presente?</h2>
+            <p>Informe seu nome para concluir o presente:</p>
+
+            <label class="sr-only" for="nome-presenteador">Seu nome</label>
+            <input id="nome-presenteador" type="text" autocomplete="name" placeholder="Digite seu nome" maxlength="100">
+            <small class="modal-presente__erro" id="modal-presente-erro" aria-live="polite"></small>
+
+            <div class="modal-presente__acoes">
+                <button type="button" class="modal-presente__cancelar" data-fechar-modal>Cancelar</button>
+                <button type="button" class="modal-presente__confirmar" id="modal-presente-confirmar">Confirmar presente</button>
+            </div>
+        </section>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
